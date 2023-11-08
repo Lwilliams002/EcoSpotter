@@ -9,76 +9,80 @@ App Design Project
 2. [Product Spec](#Product-Spec)
 3. [Wireframes](#Wireframes)
 4. [Schema](#Schema)
+5. [Sprint Plan](#Sprint-Plan)
 
 ## Overview
 
-### Description
+**Description:** Ecospotter is a mobile application designed to help users locate eco-friendly services, recycling centers, and sustainable lifestyle options nearby. It provides users with an easy way to contribute to and benefit from a greener planet by making eco-friendly choices accessible and community-driven.
 
-Ecospotter is an interactive mobile application designed to help users locate eco-friendly services, recycling centers, and sustainable lifestyle options nearby. Utilizing real-time location data, Ecospotter provides users with an easy way to contribute to and benefit from a greener planet.
-
-
-
-### App Evaluation
-
+**App Evaluation:**
 - **Category:** Lifestyle / Environment
-- **Mobile:** This app uses mobile features such as GPS, location tracking, real-time updates, and camera integration for QR code scanning.
-- **Story:** Ecospotter tells a story of individual contribution to environmental sustainability by making eco-friendly choices accessible and community-driven.
-- **Market:** Eco-conscious individuals, as well as anyone looking to make more sustainable lifestyle choices
-- **Habit:** Users are likely to use the app regularly as they make day-to-day choices about shopping, dining, and living sustainably.
-- **Scope:** The initial version will focus on mapping eco-friendly places, with potential to expand to social features and more interactive elements.
+- **Mobile Features:** GPS, location tracking, real-time updates.
+- **Story:** Ecospotter tells a story of individual contribution to environmental sustainability.
+- **Market:** Eco-conscious individuals and anyone looking to make more sustainable lifestyle choices.
+- **Habit:** Users are likely to use the app regularly for day-to-day sustainable choices.
+- **Scope:** The initial version will focus on mapping places that need enviromental help, with potential to expand to social features and more interactive elements.
 
-## Product Spec
-
-### 1. User Stories (Required and Optional)
+## User Stories
 
 **Required Must-have Stories**
-* Users can view a list of nearby eco-friendly services.
-* Users can get directions to eco-friendly stores and recycling centers.
-* Users can add new eco-friendly places to the map.
-* Users can review and rate eco-friendly services.
-
+* Users can view a map with pins for nearby sites that need attention.
+* Users can tap on a pin to view details about a selected site, including its name, description, images, and ratings.
+* Users can get directions to an pin from their current location.
+* Users can add new pins to the map, providing details such as name, description, images, and category.
+* Users can review and rate pins, providing feedback and a rating from 1 to 5 stars.
 
 **Optional Nice-to-have Stories**
 
-* Social features where users can share their eco-friendly activities.
-* Gamification elements to reward frequent use and contributions.
-* Integrating a carbon footprint tracker based on user activity.
+* Users can log in and create a profile to track their contributions to environmental sustainability.
+* Users can see their profile with details about their eco-footprint, contributions, and badges earned.
+* Users can follow and connect with other eco-conscious users, forming a community.
+* Users can share their eco-friendly activities and achievements on a social feed.
+* Users can earn rewards or badges for frequent use and making sustainable choices.
+* Users can participate in eco-challenges or activities suggested by the app.
 
-### 2. Screen Archetypes
+## Screen Archetypes
 
-Map View Screen
-* Users can view a map with pins for eco-friendly places.
+**Map View Screen**
+* Users can view a map with pins for nearby sites that need attention.
 
+**Pin Details Screen**
+* Users can view details about a pin, including name, description, images, ratings, and reviews.
+* Users can get directions to the selected place from their current location.
+* Users can read and submit reviews and ratings for the place.
 
-Place Details Screen
-* Users can view details about a selected eco-friendly service, including reviews and directions.
+**Add Place Screen**
+* Users can add a new pins to the map, providing details like name, description, images, and category.
+* Users can specify whether the incident is a Environmental Hazard, Deforestation, Litter Cleanup and etc.
+* After submission, returns to the Map View Screen with the new pin added.
 
+**Profile Screen**
+* Users can view their profile with details about their eco-footprint, contributions, and badges earned.
+* Users can view their badges and rewards earned.
 
-Add Place Screen
-* Users can add a new place to the map, with details and pictures.
-
-Profile Screen
-* Users can view their contributions and eco-footprint.
-
-### 3. Navigation
+## Navigation
 
 **Tab Navigation** (Tab to Screen)
 
-* Map
-* Add Place
-* Profile
+* Map View: Displays a map with eco-friendly pins.
+* Add Pin: Allows users to add new eco-friendly places.
+* Profile: Shows user's profile and achievements.
 
 **Flow Navigation** (Screen to Screen)
 
-Map View Screen
-* Clicking on a pin goes to the Place Details Screen.
+**Map View Screen**
+* Clicking on a pin goes to the Place Details Screen, displaying information about the selected place.
+* Clicking on the "Add Place" button opens the Add Place Screen for users to submit a new eco-friendly place.
 
-Add Place Screen
-* After submission, returns to Map View Screen with new pin added.
+**Place Details Screen**
+* Provides options to get directions to the place or read and submit reviews.
+* The "Back" button returns to the Map View Screen.
 
-Profile Screen
-* Can navigate to Settings or Edit Profile.
+**Add Place Screen**
+* After submission, returns to the Map View Screen with the new pin added.
 
+**Profile Screen**
+* Users can navigate to Settings or Edit Profile.
 
 ## Wireframes
 
@@ -102,3 +106,25 @@ Profile Screen
 - [Add list of network requests by screen ]
 - [Create basic snippets for each Parse network request]
 - [OPTIONAL: List endpoints if using existing API such as Yelp]
+
+## Sprint Plan
+
+### Sprint 1: Project Setup and Basic Functionality (Week 1)
+
+- [ ] Set up the project environment, including Xcode or your chosen development tool.
+- [ ] Create the main user interface components, including the map view and basic UI elements.
+- [ ] Ensure that the app can display pinned locations on the map with basic details.
+- [ ] Set up tab bar so it navigates to each view controller
+- [ ] Design and implement the Pin Details screen, where users can view detailed information about a selected pin.
+
+### Sprint 2: Pin Details and User Interaction (Week 2)
+
+- [ ] Implement the ability to get directions to a selected pin from the current location.
+- [ ] Allow all users to see new eco-friendly places to the map with details and images.
+- [ ] Focus on user interaction and ensure that the app is user-friendly.
+
+### Sprint 3: User Profiles and Final Polish (Week 3)
+
+- [ ] Develop user profiles where users can track their contributions, see their recent activities, and view earned badges.
+- [ ] Polish the app's user interface, fix any bugs, and optimize performance.
+
