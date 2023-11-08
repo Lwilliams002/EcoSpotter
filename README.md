@@ -86,12 +86,21 @@ App Design Project
 
 ## Wireframes
 
-[Add picture of your hand sketched wireframes in this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+Hand sketched wireframe
+![IMG_3DD2F36BAAD5-1](https://github.com/Lwilliams002/EcoSpotter/assets/82903572/40c97f94-a3e5-40d6-a8ca-28449f89e330)
 
 ### [BONUS] Digital Wireframes & Mockups
 
+![Map View Screen](https://github.com/Lwilliams002/EcoSpotter/assets/82903572/3a2cc2e9-9df4-4385-8020-0cc57de90801)
+![Profile Screen](https://github.com/Lwilliams002/EcoSpotter/assets/82903572/6e00998a-f54a-42a8-8794-2c17a41b2d38)
+![Add Place Screen](https://github.com/Lwilliams002/EcoSpotter/assets/82903572/8b325309-4a3f-4efa-af44-f304fd1c3996)
+![Place Detail Screen](https://github.com/Lwilliams002/EcoSpotter/assets/82903572/d3098ba0-e412-41c2-809d-a090a0bdf617)
+![Drop Pin View Controller](https://github.com/Lwilliams002/EcoSpotter/assets/82903572/f16f4368-e471-4477-ac5a-9ba4bf13e29c)
+
 ### [BONUS] Interactive Prototype
+
+[![Figma Design](https://via.placeholder.com/800x450.png?text=Click+to+view+Figma+Design)](https://www.figma.com/proto/KGLw6GV6RbW2O6jUMzdqH9/Untitled?page-id=0%3A1&type=design&node-id=3-33&viewport=3041%2C518%2C0.39&t=xUzgWf4uS14OKbqb-1&scaling=min-zoom&starting-point-node-id=3%3A33&mode=design)
+
 
 ## Schema 
 
