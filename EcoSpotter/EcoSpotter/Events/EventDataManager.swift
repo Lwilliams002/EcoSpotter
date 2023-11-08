@@ -4,7 +4,7 @@ class EventDataManager {
     static let shared = EventDataManager() // Singleton instance
     
     private var events: [Event] = [] // Store events here
-    
+    weak var delegate: EventDataManagerDelegate?
     private init() {
         // Load events from storage if needed
     }
@@ -12,8 +12,9 @@ class EventDataManager {
     // Add a new event
     func addEvent(_ event: Event) {
         events.append(event)
-        // You can also save events to persistent storage here
+        delegate?.didAddEvent(event)
     }
+
     
     // Retrieve all events
     func getAllEvents() -> [Event] {
@@ -29,4 +30,8 @@ class EventDataManager {
     }
     
     // You can add more methods for managing events as needed
+}
+
+protocol EventDataManagerDelegate: AnyObject {
+    func didAddEvent(_ event: Event)
 }

@@ -16,25 +16,27 @@ class AddEventViewController: UIViewController, UITextViewDelegate, PHPickerView
     
     @IBOutlet weak var submitButtonView: UIButton!
     @IBAction func submitButton(_ sender: UIButton) {
-        guard let _ = titleTextView.text,
-              let _ = placeholderTextView.text else {
+        guard let title = titleTextView.text, !title.isEmpty,
+              let description = placeholderTextView.text, !description.isEmpty,
+              let selectedLocation = selectedLocation else {
+            // Handle the case where required data is missing
+            print("Required data is missing.")
             return
         }
         
-        if let selectedLocation = selectedLocation {
-            let location = CLLocation(latitude: selectedLocation.latitude, longitude: selectedLocation.longitude)
-            
-            guard let title = titleTextView.text,
-                  let description = placeholderTextView.text else {
-                return
-            }
-            
-            let event = Event(title: title, description: description, images: selectedImages, location: location)
-            
-            EventDataManager.shared.addEvent(event)
-        }
-
+        print("Selected Location (in submitButton): \(selectedLocation)")
+        
+        let location = CLLocation(latitude: selectedLocation.latitude, longitude: selectedLocation.longitude)
+        
+        print("Location is ", location)
+        
+        let event = Event(title: title, description: description, images: selectedImages, location: location)
+        
+        EventDataManager.shared.addEvent(event)
+        print("Event added:", event)
     }
+
+
     
     
     @IBOutlet var tapGestureRecognizer: UITapGestureRecognizer?
@@ -58,7 +60,17 @@ class AddEventViewController: UIViewController, UITextViewDelegate, PHPickerView
     
     // Assume you have a button action that presents the DroppinViewController
     @IBAction func openDroppinViewController(_ sender: UIButton) {
-      
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let droppinViewController = storyboard.instantiateViewController(withIdentifier: "DropPinViewControllerID") as! DropPinViewController
+
+        // Set the closure to capture the selected location
+        droppinViewController.onLocationSelect = { [weak self] selectedLocation in
+            // Handle the selected location here
+            self?.handleSelectedLocation(selectedLocation)
+        }
+
+        // Present the DropPinViewController
+        navigationController?.pushViewController(droppinViewController, animated: true)
     }
 
     
@@ -79,7 +91,7 @@ class AddEventViewController: UIViewController, UITextViewDelegate, PHPickerView
         titleTextView.layer.cornerRadius = 20
         titleTextView.delegate = self
         
-        submitButtonView.layer.cornerRadius = 10 // Adjust the corner radius to your preference
+        submitButtonView.layer.cornerRadius = 20 // Adjust the corner radius to your preference
         submitButtonView.clipsToBounds = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -121,8 +133,6 @@ class AddEventViewController: UIViewController, UITextViewDelegate, PHPickerView
 
 
             let menu = UIMenu(title: "", children: menuItems)
-
-            // Set the menu for the pullDownButton
             pullDownButton.menu = menu
     }
     
@@ -156,25 +166,26 @@ class AddEventViewController: UIViewController, UITextViewDelegate, PHPickerView
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView == placeholderTextView && textView.text == "Description" { // Replace "Placeholder" with the actual placeholder text
             textView.text = ""
-            textView.textColor = .black // Set this to whatever color you want the text to be when editing
+            textView.textColor = .white // Set this to whatever color you want the text to be when editing
         }
         else{
             textView.text = ""
-            textView.textColor = .black
+            textView.textColor = .white
         }
     }
     
-    // Optional: Implement this delegate method to reset the placeholder text when the UITextView is empty and the user finishes editing
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView == placeholderTextView && textView.text.isEmpty {
-            textView.text = "Description"
-            textView.textColor = .lightGray
-        }
-        else{
-            textView.text = "Title"
-            textView.textColor = .lightGray
+        if textView == placeholderTextView {
+            if textView.text.isEmpty {
+                textView.text = "Description"
+                textView.textColor = .lightGray
+            } else if textView.text == "Title" {
+                textView.text = "Description"
+                textView.textColor = .white
+            }
         }
     }
+
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
             picker.dismiss(animated: true, completion: nil)
@@ -197,10 +208,12 @@ class AddEventViewController: UIViewController, UITextViewDelegate, PHPickerView
     
     func handleSelectedLocation(_ selectedLocation: CLLocationCoordinate2D) {
         // Handle the selected location here
+        print("Selected Location: \(selectedLocation)")
+
         self.selectedLocation = selectedLocation
            
            // Handle the selected location here
-        print("Selected Location: \(selectedLocation)")
+        print("Selected Location after setting: \(selectedLocation)")
         // You can store it in a property or update your UI as needed
     }
     

@@ -14,6 +14,9 @@
 		AD72FA502AF9FB8700DE156C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD72FA4E2AF9FB8700DE156C /* Main.storyboard */; };
 		AD72FA522AF9FB8800DE156C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD72FA512AF9FB8800DE156C /* Assets.xcassets */; };
 		AD72FA552AF9FB8800DE156C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD72FA532AF9FB8800DE156C /* LaunchScreen.storyboard */; };
+		AD7509912AFC0A20005E9ACD /* EventAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7509902AFC0A20005E9ACD /* EventAnnotation.swift */; };
+		AD7509932AFC0A70005E9ACD /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7509922AFC0A70005E9ACD /* EventViewController.swift */; };
+		AD7509962AFC1367005E9ACD /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7509952AFC1367005E9ACD /* CustomAnnotationView.swift */; };
 		AD9842A02AFAA0340006E5B1 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD98429F2AFAA0340006E5B1 /* AddEventViewController.swift */; };
 		ADBCC57A2AFAE0130025608B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBCC5792AFAE0130025608B /* Event.swift */; };
 		ADBCC57C2AFAE06A0025608B /* EventDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBCC57B2AFAE06A0025608B /* EventDataManager.swift */; };
@@ -31,6 +34,9 @@
 		AD72FA512AF9FB8800DE156C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD72FA542AF9FB8800DE156C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD72FA562AF9FB8800DE156C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD7509902AFC0A20005E9ACD /* EventAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAnnotation.swift; sourceTree = "<group>"; };
+		AD7509922AFC0A70005E9ACD /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		AD7509952AFC1367005E9ACD /* CustomAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
 		AD98429F2AFAA0340006E5B1 /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 		ADBCC5792AFAE0130025608B /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		ADBCC57B2AFAE06A0025608B /* EventDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDataManager.swift; sourceTree = "<group>"; };
@@ -82,6 +88,14 @@
 			path = EcoSpotter;
 			sourceTree = "<group>";
 		};
+		AD7509942AFC1353005E9ACD /* Pins */ = {
+			isa = PBXGroup;
+			children = (
+				AD7509952AFC1367005E9ACD /* CustomAnnotationView.swift */,
+			);
+			path = Pins;
+			sourceTree = "<group>";
+		};
 		ADBCC57D2AFAE2B80025608B /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -94,9 +108,12 @@
 		ADBCC57E2AFAE2D70025608B /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				AD7509942AFC1353005E9ACD /* Pins */,
 				AD98429F2AFAA0340006E5B1 /* AddEventViewController.swift */,
 				ADBCC5792AFAE0130025608B /* Event.swift */,
 				ADBCC57B2AFAE06A0025608B /* EventDataManager.swift */,
+				AD7509902AFC0A20005E9ACD /* EventAnnotation.swift */,
+				AD7509922AFC0A70005E9ACD /* EventViewController.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -181,13 +198,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				ADBCC57C2AFAE06A0025608B /* EventDataManager.swift in Sources */,
+				AD7509932AFC0A70005E9ACD /* EventViewController.swift in Sources */,
 				AD72FA4D2AF9FB8700DE156C /* ViewController.swift in Sources */,
 				ADFBCCFB2AFAB2E7001B13AE /* MapViewController.swift in Sources */,
+				AD7509912AFC0A20005E9ACD /* EventAnnotation.swift in Sources */,
 				AD72FA492AF9FB8700DE156C /* AppDelegate.swift in Sources */,
 				AD9842A02AFAA0340006E5B1 /* AddEventViewController.swift in Sources */,
 				ADBCC5812AFAE3390025608B /* DropPinViewController.swift in Sources */,
 				AD71D1D92AFA7C6F0037FE91 /* CustomTabBarController.swift in Sources */,
 				ADBCC57A2AFAE0130025608B /* Event.swift in Sources */,
+				AD7509962AFC1367005E9ACD /* CustomAnnotationView.swift in Sources */,
 				AD72FA4B2AF9FB8700DE156C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
