@@ -120,11 +120,12 @@ Hand sketched wireframe
 
 ### Sprint 1: Project Setup and Basic Functionality (Week 1)
 
-- [ ] Set up the project environment, including Xcode or your chosen development tool.
-- [ ] Create the main user interface components, including the map view and basic UI elements.
-- [ ] Ensure that the app can display pinned locations on the map with basic details.
+- [x] Set up the project environment, including Xcode or your chosen development tool.
+- [x] Create the main user interface components, including the map view and basic UI elements.
+- [x] Ensure that the app can display pinned locations on the map with basic details.
 - [ ] Set up tab bar so it navigates to each view controller
-- [ ] Design and implement the Pin Details screen, where users can view detailed information about a selected pin.
+- [x] Implement the Pin Details screen, where users can view detailed information about a selected pin.
+- [ ] Create profile user interface
 
 ### Sprint 2: Pin Details and User Interaction (Week 2)
 
@@ -137,3 +138,27 @@ Hand sketched wireframe
 - [ ] Develop user profiles where users can track their contributions, see their recent activities, and view earned badges.
 - [ ] Polish the app's user interface, fix any bugs, and optimize performance.
 
+## Project Setup and Networking Integration
+
+### App Demo
+https://github.com/Lwilliams002/EcoSpotter/assets/82903572/2d5c8000-5982-4b04-856b-93c73d2a8ab7
+### Achievements
+
+- [X] Created the project structure and integrated essential frameworks.
+- [X] Set up networking for fetching data from external APIs.
+- [X] Implemented basic read-only functionality for displaying eco-friendly places on the map.
+
+### Challenges
+
+- [X] Faced a significant challenge when dealing with the `UIinview` issue, which caused unexpected behavior in the user interface.
+- [X] Designing the user interface for the Map View screen.
+
+### Next Steps
+
+- [ ] Enhance error handling and implement user feedback for networking.
+- [ ] Start designing the user interface for the Map View screen.
+- [ ] Investigate potential data persistence options for a smoother user experience.
+- [ ] Change basic read-only functionality to certain placeholders.
+
+
+- [ ] 
