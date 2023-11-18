@@ -18,7 +18,8 @@ class AddEventViewController: UIViewController, UITextViewDelegate, PHPickerView
     @IBAction func submitButton(_ sender: UIButton) {
         guard let title = titleTextView.text, !title.isEmpty,
               let description = placeholderTextView.text, !description.isEmpty,
-              let selectedLocation = selectedLocation else {
+              let selectedLocation = selectedLocation,
+              let category = selectedCategory else {
             // Handle the case where required data is missing
             print("Required data is missing.")
             return
@@ -30,10 +31,13 @@ class AddEventViewController: UIViewController, UITextViewDelegate, PHPickerView
         
         print("Location is ", location)
         
-        let event = Event(title: title, description: description, images: selectedImages, location: location)
+        let event = Event(title: title, description: description, images: selectedImages, location: location, category: category )
         
         EventDataManager.shared.addEvent(event)
         print("Event added:", event)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 
 
@@ -53,7 +57,8 @@ class AddEventViewController: UIViewController, UITextViewDelegate, PHPickerView
     
     
     @IBOutlet weak var pullDownButton: UIButton!
-    
+    var selectedCategory: String?
+
     
     var selectedImages: [UIImage] = []
     @IBOutlet weak var scrollView: UIScrollView!
@@ -99,35 +104,35 @@ class AddEventViewController: UIViewController, UITextViewDelegate, PHPickerView
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         
         let menuItems = [
-            UIAction(title: "🌿 Environmental Hazard") { _ in
-                // Handle Environmental Conservation selection
+            UIAction(title: "🌿 Environmental Hazard") { [weak self] _ in
+                self?.selectedCategory = "🌿 Environmental Hazard"
             },
-            UIAction(title: "🌍 Climate Change") { _ in
-                // Handle Climate Change selection
+            UIAction(title: "🌍 Climate Change") { [weak self] _ in
+                self?.selectedCategory = "🌍 Climate Change"
             },
-            UIAction(title: "🌊 Water Pollution") { _ in
-                // Handle Water Pollution selection
+            UIAction(title: "🌊 Water Pollution") { [weak self] _ in
+                self?.selectedCategory = "🌊 Water Pollution"
             },
-            UIAction(title: "🌳 Deforestation") { _ in
-                // Handle Deforestation selection
+            UIAction(title: "🌳 Deforestation") { [weak self] _ in
+                self?.selectedCategory = "🌳 Deforestation"
             },
-            UIAction(title: "🌏 Biodiversity") { _ in
-                // Handle Biodiversity selection
+            UIAction(title: "🌏 Biodiversity") { [weak self] _ in
+                self?.selectedCategory = "🌏 Biodiversity"
             },
-            UIAction(title: "🗑️ Waste Reduction") { _ in
-                // Handle Waste Reduction selection
+            UIAction(title: "🗑️ Waste Reduction") { [weak self] _ in
+                self?.selectedCategory = "🗑️ Waste Reduction"
             },
-            UIAction(title: "🚯 Litter Cleanup") { _ in
-                // Handle Litter Cleanup selection
+            UIAction(title: "🚯 Litter Cleanup") { [weak self] _ in
+                self?.selectedCategory = "🚯 Litter Cleanup"
             },
-            UIAction(title: "🌡️ Renewable Energy") { _ in
-                // Handle Renewable Energy selection
+            UIAction(title: "🌡️ Renewable Energy") { [weak self] _ in
+                self?.selectedCategory = "🌡️ Renewable Energy"
             },
-            UIAction(title: "🐦 Wildlife Protection") { _ in
-                // Handle Wildlife Protection selection
+            UIAction(title: "🐦 Wildlife Protection") { [weak self] _ in
+                self?.selectedCategory = "🐦 Wildlife Protection"
             },
-            UIAction(title: "♻️ Recycling") { _ in
-                // Handle Recycling selection
+            UIAction(title: "♻️ Recycling") { [weak self] _ in
+                self?.selectedCategory = "♻️ Recycling"
             }
         ]
 

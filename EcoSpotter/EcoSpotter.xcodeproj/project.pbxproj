@@ -17,6 +17,7 @@
 		AD7509912AFC0A20005E9ACD /* EventAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7509902AFC0A20005E9ACD /* EventAnnotation.swift */; };
 		AD7509932AFC0A70005E9ACD /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7509922AFC0A70005E9ACD /* EventViewController.swift */; };
 		AD7509962AFC1367005E9ACD /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7509952AFC1367005E9ACD /* CustomAnnotationView.swift */; };
+		AD7509992B06D288005E9ACD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD7509982B06D288005E9ACD /* ProfileViewController.swift */; };
 		AD9842A02AFAA0340006E5B1 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD98429F2AFAA0340006E5B1 /* AddEventViewController.swift */; };
 		ADBCC57A2AFAE0130025608B /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBCC5792AFAE0130025608B /* Event.swift */; };
 		ADBCC57C2AFAE06A0025608B /* EventDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBCC57B2AFAE06A0025608B /* EventDataManager.swift */; };
@@ -37,6 +38,7 @@
 		AD7509902AFC0A20005E9ACD /* EventAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAnnotation.swift; sourceTree = "<group>"; };
 		AD7509922AFC0A70005E9ACD /* EventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		AD7509952AFC1367005E9ACD /* CustomAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
+		AD7509982B06D288005E9ACD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AD98429F2AFAA0340006E5B1 /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
 		ADBCC5792AFAE0130025608B /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		ADBCC57B2AFAE06A0025608B /* EventDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDataManager.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 		AD72FA472AF9FB8700DE156C /* EcoSpotter */ = {
 			isa = PBXGroup;
 			children = (
+				AD7509972B06D278005E9ACD /* User */,
 				ADBCC57F2AFAE2F60025608B /* Tab Bar */,
 				ADBCC57E2AFAE2D70025608B /* Events */,
 				ADBCC57D2AFAE2B80025608B /* Map */,
@@ -94,6 +97,14 @@
 				AD7509952AFC1367005E9ACD /* CustomAnnotationView.swift */,
 			);
 			path = Pins;
+			sourceTree = "<group>";
+		};
+		AD7509972B06D278005E9ACD /* User */ = {
+			isa = PBXGroup;
+			children = (
+				AD7509982B06D288005E9ACD /* ProfileViewController.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		ADBCC57D2AFAE2B80025608B /* Map */ = {
@@ -207,6 +218,7 @@
 				ADBCC5812AFAE3390025608B /* DropPinViewController.swift in Sources */,
 				AD71D1D92AFA7C6F0037FE91 /* CustomTabBarController.swift in Sources */,
 				ADBCC57A2AFAE0130025608B /* Event.swift in Sources */,
+				AD7509992B06D288005E9ACD /* ProfileViewController.swift in Sources */,
 				AD7509962AFC1367005E9ACD /* CustomAnnotationView.swift in Sources */,
 				AD72FA4B2AF9FB8700DE156C /* SceneDelegate.swift in Sources */,
 			);

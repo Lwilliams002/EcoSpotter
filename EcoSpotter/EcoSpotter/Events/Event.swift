@@ -6,5 +6,5 @@ struct Event {
     let description: String
     let images: [UIImage]
     let location: CLLocation
-
+    let category: String
 }

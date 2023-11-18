@@ -7,8 +7,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet weak var centerButton: UIButton!
     let locationManager = CLLocationManager()
     let eventDataManager = EventDataManager.shared
-   
 
+    var testPins: [Event] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         centerButton.addTarget(self, action: #selector(centerMapOnUserLocation), for: .touchUpInside)
         
         addPinsFromDataManagerToMap()
+        addTestPins()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -61,7 +63,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                 coordinate: location.coordinate,
                 title: event.title,
                 subtitle: event.description,
-                image: event.images // Pass the images parameter
+                category: event.category,
+                image: event.images
             )
             mapView.addAnnotation(annotation)
         }
@@ -77,12 +80,37 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             eventViewController.titleText = annotation.title
             eventViewController.descriptionText = annotation.subtitle
             eventViewController.locationCoordinate = annotation.coordinate
+            eventViewController.categoryText = annotation.category
             eventViewController.images = annotation.image
             
             // Present the EventViewController
             self.present(eventViewController, animated: true, completion: nil)
         }
     }
+    
+    func addTestPins() {
+            guard let currentLocation = locationManager.location?.coordinate else { return }
+
+            let offsets = [(-0.001, 0.001), (0.001, -0.001), (0.002, 0.002)]
+            for (latOffset, lonOffset) in offsets {
+                let testLocation = CLLocationCoordinate2D(latitude: currentLocation.latitude + latOffset, longitude: currentLocation.longitude + lonOffset)
+                let testEvent = Event(title: "Test Pin", description: "This is a test pin", images: [], location: CLLocation(latitude: testLocation.latitude, longitude: testLocation.longitude), category: "🌿 Environmental Hazard")
+                testPins.append(testEvent)
+                addPinToMap(event: testEvent)
+            }
+        }
+
+    func addPinToMap(event: Event) {
+            let annotation = EventAnnotation(
+                coordinate: event.location.coordinate,
+                title: event.title,
+                subtitle: event.description, 
+                category: event.category,
+                image: event.images
+            )
+            mapView.addAnnotation(annotation)
+        }
+    
 }
 
 extension MapViewController: EventDataManagerDelegate {
@@ -93,9 +121,12 @@ extension MapViewController: EventDataManagerDelegate {
             coordinate: location.coordinate,
             title: event.title,
             subtitle: event.description,
+            category: event.category,
             image: event.images
         )
         mapView.addAnnotation(annotation)
     }
 }
+
+
 
