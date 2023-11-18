@@ -123,20 +123,20 @@ Hand sketched wireframe
 - [x] Set up the project environment, including Xcode or your chosen development tool.
 - [x] Create the main user interface components, including the map view and basic UI elements.
 - [x] Ensure that the app can display pinned locations on the map with basic details.
-- [ ] Set up tab bar so it navigates to each view controller
+- [x] Set up tab bar so it navigates to each view controller
 - [x] Implement the Pin Details screen, where users can view detailed information about a selected pin.
-- [ ] Create profile user interface
+- [x] Create profile user interface
+- [x] Start designing the user interface for the Map View screen.
+- [x] Change basic read-only functionality to certain placeholders.
 
 ### Sprint 2: Pin Details and User Interaction (Week 2)
 
 - [ ] Implement the ability to get directions to a selected pin from the current location.
 - [ ] Allow all users to see new eco-friendly places to the map with details and images.
 - [ ] Focus on user interaction and ensure that the app is user-friendly.
-
-### Sprint 3: User Profiles and Final Polish (Week 3)
-
 - [ ] Develop user profiles where users can track their contributions, see their recent activities, and view earned badges.
 - [ ] Polish the app's user interface, fix any bugs, and optimize performance.
+
 
 ## Project Setup and Networking Integration
 
@@ -156,9 +156,6 @@ https://github.com/Lwilliams002/EcoSpotter/assets/82903572/2d5c8000-5982-4b04-85
 ### Next Steps
 
 - [ ] Enhance error handling and implement user feedback for networking.
-- [ ] Start designing the user interface for the Map View screen.
 - [ ] Investigate potential data persistence options for a smoother user experience.
-- [ ] Change basic read-only functionality to certain placeholders.
 
 
-- [ ] 
