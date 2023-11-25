@@ -17,6 +17,15 @@ class EventViewController: UIViewController {
     var categoryText: String?
     
     
+    @IBAction func completeButtonTapped(_ sender: UIButton) {
+        guard let eventToComplete = event else {
+                showAlert(with: "No event to mark as complete.")
+                return
+            }
+        completeEvent(event: eventToComplete)
+
+        
+    }
     @IBAction func eventAddButton(_ sender: UIButton) {
         guard let title = eventTitle.text, !title.isEmpty,
               let description = eventDescription.text, !description.isEmpty,
@@ -30,7 +39,7 @@ class EventViewController: UIViewController {
         let location = CLLocation(latitude: selectedLocation.latitude, longitude: selectedLocation.longitude)
 
 
-        let event = Event(title: title, description: description, images: images, location: location, category: category)
+        let event = Event(title: title, description: description, images: images, location: location, category: category, isComplete: false)
         if EventDataManager.shared.isEventInToDoList(event) {
             // Show an alert if the event is already in the to-do list
             showAlert(with: "This event is already added to your To-Do list.")
@@ -44,7 +53,11 @@ class EventViewController: UIViewController {
         }
     }
     
-    // Properties to store event details
+    func completeEvent(event: Event) {
+        EventDataManager.shared.markEventAsCompleted(event: event)
+    }
+
+    
     
     func showAlert(with message: String) {
         let alert = UIAlertController(title: "Notice", message: message, preferredStyle: .alert)
@@ -55,14 +68,13 @@ class EventViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // Update the UI with event details
         print("Category text is: \(categoryText ?? "nil")")
         eventTitle.text = titleText
         eventDescription.text = descriptionText
         categoryLabel.text = categoryText
         print("Category text is: \(categoryText ?? "nil")")
-
         
+        AppData.shared.totalPinsViewed += 1
         
         if let coordinate = locationCoordinate {
             // Center the map on the event's location
@@ -84,21 +96,16 @@ class EventViewController: UIViewController {
     }
     
     func addImageToScrollView(_ image: UIImage) {
-        // Create an image view for the new image
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
         
-        // Calculate the position for the new image view
         let contentWidth = eventImagesScrollView.contentSize.width
         let xPosition = contentWidth == 0 ? 0 : contentWidth + 10 // Add some spacing between images
         imageView.frame = CGRect(x: xPosition, y: 0, width: eventImagesScrollView.frame.width, height: eventImagesScrollView.frame.height)
         
-        // Add the image view to the scroll view
         eventImagesScrollView.addSubview(imageView)
         
-        // Update the content size of the scroll view to include the new image
         eventImagesScrollView.contentSize = CGSize(width: xPosition + eventImagesScrollView.frame.width, height: eventImagesScrollView.frame.height)
         
-        // Optionally, you can adjust the zoom scale or other properties of the scroll view
     }
 }

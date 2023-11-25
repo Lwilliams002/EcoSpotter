@@ -7,4 +7,5 @@ struct Event {
     let images: [UIImage]
     let location: CLLocation
     let category: String
+    var isComplete: Bool
 }

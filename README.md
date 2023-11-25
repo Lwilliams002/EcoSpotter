@@ -101,15 +101,6 @@ Hand sketched wireframe
 
 [![Figma Design](https://via.placeholder.com/800x450.png?text=Click+to+view+Figma+Design)](https://www.figma.com/proto/KGLw6GV6RbW2O6jUMzdqH9/Untitled?page-id=0%3A1&type=design&node-id=3-33&viewport=3041%2C518%2C0.39&t=xUzgWf4uS14OKbqb-1&scaling=min-zoom&starting-point-node-id=3%3A33&mode=design)
 
-
-## Schema 
-
-[This section will be completed in Unit 9]
-
-### Models
-
-[Add table of models]
-
 ### Networking
 
 - [Add list of network requests by screen ]
@@ -131,11 +122,10 @@ Hand sketched wireframe
 
 ### Sprint 2: Pin Details and User Interaction (Week 2)
 
-- [ ] Implement the ability to get directions to a selected pin from the current location.
-- [ ] Allow all users to see new eco-friendly places to the map with details and images.
-- [ ] Focus on user interaction and ensure that the app is user-friendly.
-- [ ] Develop user profiles where users can track their contributions, see their recent activities, and view earned badges.
-- [ ] Polish the app's user interface, fix any bugs, and optimize performance.
+- [x] Allow all users to see new eco-friendly places to the map with details and images.
+- [x] Focus on user interaction and ensure that the app is user-friendly.
+- [x] Develop user profiles where users can track their contributions, see their recent activities, and view earned badges.
+- [x] Polish the app's user interface, fix any bugs, and optimize performance.
 
 
 ## Project Setup and Networking Integration
@@ -154,9 +144,22 @@ https://github.com/Lwilliams002/EcoSpotter/assets/82903572/2d5c8000-5982-4b04-85
 - [X] Faced a significant challenge when dealing with the `UIinview` issue, which caused unexpected behavior in the user interface.
 - [X] Designing the user interface for the Map View screen.
 
-### Next Steps
+### Completing Pins
+Users can mark environmental spots as completed, which updates the status of these pins. Completed pins are then removed from the user's to-do list and the map view, providing a clear and satisfying way for users to track their contributions.
 
-- [ ] Enhance error handling and implement user feedback for networking.
-- [ ] Investigate potential data persistence options for a smoother user experience.
+### Viewing Counter
+A counter has been implemented to track the total number of pins viewed by the user. This feature aims to increase user engagement and encourage exploration of various environmental spots.
+
+### Pending Pins
+The app now displays the number of environmental spots pending in the user's list. This feature helps users keep track of their planned environmental activities.
+
+### UI Enhancements
+Significant updates to the user interface include:
+- A color scheme reflecting the app's environmental theme.
+- A custom-designed middle button on the tab bar for adding new pins.
+- Improved readability and accessibility across various app components.
+
+### Technical Improvements
+- Enhanced data handling and state management for a more responsive and reliable user experience.
 
 

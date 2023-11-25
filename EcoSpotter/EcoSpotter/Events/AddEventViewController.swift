@@ -20,7 +20,6 @@ class AddEventViewController: UIViewController, UITextViewDelegate, PHPickerView
               let description = placeholderTextView.text, !description.isEmpty,
               let selectedLocation = selectedLocation,
               let category = selectedCategory else {
-            // Handle the case where required data is missing
             print("Required data is missing.")
             return
         }
@@ -31,7 +30,7 @@ class AddEventViewController: UIViewController, UITextViewDelegate, PHPickerView
         
         print("Location is ", location)
         
-        let event = Event(title: title, description: description, images: selectedImages, location: location, category: category )
+        let event = Event(title: title, description: description, images: selectedImages, location: location, category: category, isComplete: false )
         
         EventDataManager.shared.addEvent(event)
         print("Event added:", event)
@@ -49,7 +48,7 @@ class AddEventViewController: UIViewController, UITextViewDelegate, PHPickerView
     @IBAction func photoButtonTapped(_ sender: UIButton) {
         var configuration = PHPickerConfiguration()
         configuration.filter = .images
-        configuration.selectionLimit = 0 // 0 means no limit, allowing multiple image selection
+        configuration.selectionLimit = 0
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = self
         present(picker, animated: true, completion: nil)
@@ -63,18 +62,14 @@ class AddEventViewController: UIViewController, UITextViewDelegate, PHPickerView
     var selectedImages: [UIImage] = []
     @IBOutlet weak var scrollView: UIScrollView!
     
-    // Assume you have a button action that presents the DroppinViewController
     @IBAction func openDroppinViewController(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let droppinViewController = storyboard.instantiateViewController(withIdentifier: "DropPinViewControllerID") as! DropPinViewController
 
-        // Set the closure to capture the selected location
         droppinViewController.onLocationSelect = { [weak self] selectedLocation in
-            // Handle the selected location here
             self?.handleSelectedLocation(selectedLocation)
         }
 
-        // Present the DropPinViewController
         navigationController?.pushViewController(droppinViewController, animated: true)
     }
 
@@ -87,16 +82,16 @@ class AddEventViewController: UIViewController, UITextViewDelegate, PHPickerView
         view.addGestureRecognizer(tapGesture)
         
         placeholderTextView.layer.borderColor = UIColor.black.cgColor
-        placeholderTextView.layer.borderWidth = 1.0 // Adjust the border width to your preference
+        placeholderTextView.layer.borderWidth = 1.0
         placeholderTextView.layer.cornerRadius = 20
         placeholderTextView.delegate = self
         
         titleTextView.layer.borderColor = UIColor.black.cgColor
-        titleTextView.layer.borderWidth = 1.0 // Adjust the border width to your preference
+        titleTextView.layer.borderWidth = 1.0
         titleTextView.layer.cornerRadius = 20
         titleTextView.delegate = self
         
-        submitButtonView.layer.cornerRadius = 20 // Adjust the corner radius to your preference
+        submitButtonView.layer.cornerRadius = 20
         submitButtonView.clipsToBounds = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -142,7 +137,6 @@ class AddEventViewController: UIViewController, UITextViewDelegate, PHPickerView
     }
     
     deinit {
-        // Stop listening for keyboard hide/show events
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
@@ -159,23 +153,19 @@ class AddEventViewController: UIViewController, UITextViewDelegate, PHPickerView
         }
         
         if notification.name == UIResponder.keyboardWillShowNotification || notification.name == UIResponder.keyboardWillChangeFrameNotification {
-            // Move the view up by the height of the keyboard
             view.frame.origin.y = -keyboardRect.height
         } else {
-            // Reset the view position when the keyboard is dismissed
             view.frame.origin.y = 0
         }
     }
     
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView == placeholderTextView && textView.text == "Description" { // Replace "Placeholder" with the actual placeholder text
+        if textView == placeholderTextView && textView.text == "Description" {
             textView.text = ""
-            textView.textColor = .white // Set this to whatever color you want the text to be when editing
         }
         else{
             textView.text = ""
-            textView.textColor = .white
         }
     }
     
@@ -202,7 +192,6 @@ class AddEventViewController: UIViewController, UITextViewDelegate, PHPickerView
                             DispatchQueue.main.async {
                                 self.selectedImages.append(image)
 
-                                // Add the selected image to the scroll view
                                 self.addImageToScrollView(image)
                             }
                         }
@@ -212,32 +201,24 @@ class AddEventViewController: UIViewController, UITextViewDelegate, PHPickerView
         }
     
     func handleSelectedLocation(_ selectedLocation: CLLocationCoordinate2D) {
-        // Handle the selected location here
         print("Selected Location: \(selectedLocation)")
 
         self.selectedLocation = selectedLocation
            
-           // Handle the selected location here
         print("Selected Location after setting: \(selectedLocation)")
-        // You can store it in a property or update your UI as needed
     }
     
     func addImageToScrollView(_ image: UIImage) {
-            // Create an image view for the new image
             let imageView = UIImageView(image: image)
             imageView.contentMode = .scaleAspectFit
 
-            // Calculate the position for the new image view
             let contentWidth = scrollView.contentSize.width
-            let xPosition = contentWidth == 0 ? 0 : contentWidth + 10 // Add some spacing between images
+            let xPosition = contentWidth == 0 ? 0 : contentWidth + 10 
             imageView.frame = CGRect(x: xPosition, y: 0, width: scrollView.frame.width, height: scrollView.frame.height)
 
-            // Add the image view to the scroll view
             scrollView.addSubview(imageView)
 
-            // Update the content size of the scroll view to include the new image
             scrollView.contentSize = CGSize(width: xPosition + scrollView.frame.width, height: scrollView.frame.height)
 
-            // Optionally, you can adjust the zoom scale or other properties of the scroll view
         }
 }

@@ -2,8 +2,8 @@ import Foundation
 
 class EventDataManager {
     static let shared = EventDataManager() // Singleton instance
-    private var events: [Event] = [] // Store events here
-    private var toDoEvents: [Event] = []  // Store TO DO events here
+    private var events: [Event] = [] // Store events
+    private var toDoEvents: [Event] = []  // Store TO DO events 
 
     weak var delegate: EventDataManagerDelegate?
     
@@ -33,7 +33,6 @@ class EventDataManager {
         events.append(event)
         delegate?.didAddEvent(event)
     }
-
     
     // Retrieve all events
     func getAllEvents() -> [Event] {
@@ -48,6 +47,17 @@ class EventDataManager {
             return nil
         }
         return events[index]
+    }
+    
+    func markEventAsCompleted(event: Event) {
+            if let index = events.firstIndex(where: { $0.title == event.title && $0.description == event.description }) {
+                events[index].isComplete = true
+                toDoEvents.remove(at: index)
+            }
+        }
+        
+    func getCompletedEvents() -> [Event] {
+        return events.filter { $0.isComplete }
     }
     
 }

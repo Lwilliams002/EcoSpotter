@@ -13,20 +13,27 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var todoTableView: UITableView!
     @IBOutlet weak var messageTextView: UITextView!
     
+    @IBOutlet weak var completedPin: UILabel!
+    @IBOutlet weak var pinsViewed: UILabel!
+    @IBOutlet weak var pendingPin: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
         profileImageView.clipsToBounds = true
-
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
         profileImageView.addGestureRecognizer(tapGesture)
         profileImageView.isUserInteractionEnabled = true
         
         todoTableView.dataSource = self
         todoTableView.delegate = self
+        fetchMessageOfTheDay()
+        
+        updateCompletedPinsCount()
+
     }
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         profileImageView.frame = CGRect(x: profileImageView.frame.origin.x, y: profileImageView.frame.origin.y, width: profileImageView.frame.size.width, height: profileImageView.frame.size.width)
@@ -37,6 +44,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         super.viewWillAppear(animated)
         print("Number of to-do events: \(EventDataManager.shared.getAllToDoEvents().count)")
         todoTableView.reloadData()
+        updateViewsCount()
+        updatePendingPinsCount()
+        updateCompletedPinsCount()
     }
 
 
@@ -64,15 +74,24 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             eventViewController.categoryText = selectedEvent.category
             eventViewController.images = selectedEvent.images
 
-            // Present the EventViewController
             self.present(eventViewController, animated: true, completion: nil)
         }
 
-        // Deselect the row
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
-
+    func updateCompletedPinsCount() {
+        let completedCount = EventDataManager.shared.getCompletedEvents().count
+        completedPin.text = "\(completedCount)"
+    }
+    
+    func updateViewsCount() {
+        pinsViewed.text = "\(AppData.shared.totalPinsViewed)"
+    }
+    
+    func updatePendingPinsCount() {
+        pendingPin.text = "\(EventDataManager.shared.getAllToDoEvents().count)"
+    }
     
 
     @objc func imageTapped() {
@@ -94,7 +113,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
 
     func fetchMessageOfTheDay() {
-        let urlString = "https://zenquotes.io/api/today" // Replace with the correct endpoint if needed
+        if let cachedQuote = UserDefaults.standard.string(forKey: "CachedQuote") {
+            self.messageTextView.text = cachedQuote
+            return
+        }
+        
+        let urlString = "https://zenquotes.io/api/random"
         guard let url = URL(string: urlString) else {
             print("Invalid URL")
             return
@@ -107,15 +131,14 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             }
             
             do {
-                // Parse the JSON data
                 if let jsonArray = try JSONSerialization.jsonObject(with: data) as? [[String: Any]],
                    let firstQuoteDict = jsonArray.first,
                    let quote = firstQuoteDict["q"] as? String,
                    let author = firstQuoteDict["a"] as? String {
                     let message = "\"\(quote)\"\n\n- \(author)"
                     DispatchQueue.main.async {
-                        // Update the UI with the fetched quote
                         self?.messageTextView.text = message
+                        UserDefaults.standard.set(message, forKey: "CachedQuote")
                     }
                 } else {
                     print("Invalid JSON structure")
@@ -126,6 +149,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
         
         task.resume()
+        
     }
 
 }

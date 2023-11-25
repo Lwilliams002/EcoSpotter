@@ -23,9 +23,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
         
-        // You can customize the map view's properties here
         
-        mapView.showsUserLocation = true // Show the user's location on the map
+        mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
         
         centerButton.addTarget(self, action: #selector(centerMapOnUserLocation), for: .touchUpInside)
@@ -83,7 +82,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             eventViewController.categoryText = annotation.category
             eventViewController.images = annotation.image
             
-            // Present the EventViewController
             self.present(eventViewController, animated: true, completion: nil)
         }
     }
@@ -94,7 +92,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             let offsets = [(-0.001, 0.001), (0.001, -0.001), (0.002, 0.002)]
             for (latOffset, lonOffset) in offsets {
                 let testLocation = CLLocationCoordinate2D(latitude: currentLocation.latitude + latOffset, longitude: currentLocation.longitude + lonOffset)
-                let testEvent = Event(title: "Test Pin", description: "This is a test pin", images: [], location: CLLocation(latitude: testLocation.latitude, longitude: testLocation.longitude), category: "🌿 Environmental Hazard")
+                let testEvent = Event(title: "Test Pin", description: "This is a test pin", images: [], location: CLLocation(latitude: testLocation.latitude, longitude: testLocation.longitude), category: "🌿 Environmental Hazard", isComplete: false)
                 testPins.append(testEvent)
                 addPinToMap(event: testEvent)
             }
@@ -115,7 +113,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
 extension MapViewController: EventDataManagerDelegate {
     func didAddEvent(_ event: Event) {
-        // Update the map with the new event
         let location = event.location
         let annotation = EventAnnotation(
             coordinate: location.coordinate,

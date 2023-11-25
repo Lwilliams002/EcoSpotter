@@ -6,7 +6,6 @@ class DropPinViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var centerButton: UIButton!
     
-    // Closure to capture the selected location
     var onLocationSelect: ((CLLocationCoordinate2D) -> Void)?
     let locationManager = CLLocationManager()
     var selectedAnnotation: MKPointAnnotation?
@@ -14,17 +13,14 @@ class DropPinViewController: UIViewController, MKMapViewDelegate, CLLocationMana
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set the map view's delegate to self
         mapView.delegate = self
             
-            // Request location permissions
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
         
-        // You can customize the map view's properties here
-        mapView.showsUserLocation = true // Show the user's location on the map
+        mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
         
         // Add a long press gesture recognizer to allow users to drop a pin
@@ -42,7 +38,6 @@ class DropPinViewController: UIViewController, MKMapViewDelegate, CLLocationMana
             let region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
             mapView.setRegion(region, animated: true)
             
-            // You can stop location updates if you only want the initial location
             locationManager.stopUpdatingLocation()
         }
     }
@@ -64,15 +59,12 @@ class DropPinViewController: UIViewController, MKMapViewDelegate, CLLocationMana
                             mapView.removeAnnotation(existingAnnotation)
                         }
 
-                        // Create a new annotation at the selected location
                         let annotation = MKPointAnnotation()
                         annotation.coordinate = coordinate
                         mapView.addAnnotation(annotation)
 
-                        // Store the selected annotation
                         selectedAnnotation = annotation
 
-                        // Call the closure to capture the selected location
                         onLocationSelect?(coordinate)
         }
     }
@@ -103,15 +95,12 @@ class DropPinViewController: UIViewController, MKMapViewDelegate, CLLocationMana
 
         func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
             if let eventAnnotation = view.annotation as? EventAnnotation {
-                // Create an instance of EventViewController
                 let eventViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EventViewControllerID") as! EventViewController
 
-                // Set the properties with the selected event data
                 eventViewController.titleText = eventAnnotation.title
                 eventViewController.descriptionText = eventAnnotation.subtitle
                 eventViewController.locationCoordinate = eventAnnotation.coordinate
 
-                // Present the EventViewController
                 self.present(eventViewController, animated: true, completion: nil)
             }
         }
