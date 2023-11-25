@@ -129,6 +129,8 @@ Hand sketched wireframe
 
 
 ## Project Setup and Networking Integration
+### Final App Demo
+https://github.com/Lwilliams002/EcoSpotter/assets/82903572/66d5918a-ccde-429f-9c7a-57ba04ff4749
 ### Updated App Demo
 https://github.com/Lwilliams002/EcoSpotter/assets/82903572/ab06a5e7-2ae1-405a-a8f9-840d76f759a7
 ### App Demo
